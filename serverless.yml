@@ -69,11 +69,11 @@ resources:
     usersDb:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: notes-accounts
+        TableName: note-accounts
         AttributeDefinitions:
-          - AttributeName: userName
+          - AttributeName: username
             AttributeType: S
         KeySchema:
-          - AttributeName: userName
+          - AttributeName: username
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST

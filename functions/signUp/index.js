@@ -14,7 +14,7 @@ async function createAccount(
   try {
     await db
       .put({
-        TableName: 'notes-accounts',
+        TableName: 'note-accounts',
         Item: {
           username: username,
           password: hashedPassword,
@@ -38,6 +38,7 @@ async function createAccount(
 async function signUp(username, password, firstName, lastName) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const userId = nanoid();
+  const user = userId;
 
   const createAccountResult = await createAccount(
     username,
