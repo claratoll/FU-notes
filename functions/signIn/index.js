@@ -8,7 +8,7 @@ async function getUser(username) {
   try {
     const user = await db
       .get({
-        TableName: 'notes-accounts',
+        TableName: 'note-accounts',
         Key: {
           username: username,
         },

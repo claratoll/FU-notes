@@ -1,19 +1,21 @@
-const { sendResponse } = require('../../responses/index.js');
 const AWS = require('aws-sdk');
+const { sendResponse } = require('../../responses/index');
+const middy = require('@middy/core'); // Vi importerar middy
+
+const { validateToken } = require('../middleware/auth');
 const db = new AWS.DynamoDB.DocumentClient();
 
-exports.handler = async (event, context) => {
+const deleteNote = async (event, context) => {
+  if (event?.error && event.error === '401') {
+    return sendResponse(401, { success: false, message: 'Invalid token' });
+  }
   const note = JSON.parse(event.body);
-
-  const timeStamp = new Date().getTime();
-
-  note.id = `${timeStamp}`;
 
   try {
     await db
-      .put({
+      .delete({
         TableName: 'notes-db',
-        Item: note,
+        Key: { id: note.id },
       })
       .promise();
 
@@ -22,3 +24,7 @@ exports.handler = async (event, context) => {
     return sendResponse(500, { success: false });
   }
 };
+
+const handler = middy(deleteNote).use(validateToken);
+
+module.exports = { handler };

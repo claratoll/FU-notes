@@ -6,7 +6,6 @@ const { validateToken } = require('../middleware/auth');
 const db = new AWS.DynamoDB.DocumentClient();
 
 const getNotes = async (event, context) => {
-  // Här ändrar vi från exports.handler...
   if (event?.error && event.error === '401') {
     return sendResponse(401, { success: false, message: 'Invalid token' });
   }
