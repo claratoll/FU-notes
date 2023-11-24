@@ -3,6 +3,7 @@ const { sendResponse } = require('../../responses/index');
 const middy = require('@middy/core'); // Vi importerar middy
 const { nanoid } = require('nanoid');
 const { validateToken } = require('../middleware/auth');
+const { getUserIdByUsername } = require('../getUserIdByUsername/index');
 const db = new AWS.DynamoDB.DocumentClient();
 
 const addNote = async (event, context) => {
@@ -10,33 +11,32 @@ const addNote = async (event, context) => {
   if (event?.error && event.error === '401') {
     return sendResponse(401, { success: false, message: 'Invalid token' });
   }
+  const userName = event.username;
+  const userId = event.id;
+  const { title, text, ...rest } = JSON.parse(event.body);
 
-  const note = JSON.parse(event.body);
-
-  const allowedFields = ['title', 'text'];
-
-  if (!allowedFields.some((field) => note[field])) {
+  if (Object.keys(rest).length > 0) {
     return sendResponse(400, {
       success: false,
-      message: 'Please provide only a title and a text',
+      message: 'Invalid properties. Only title and text are allowed.',
     });
   }
 
-  if (!note.title && !note.text) {
+  if (!title && !text) {
     return sendResponse(400, {
       success: false,
-      message: 'Please provide a note and a title',
+      message: 'Please provide a text and a title',
     });
   }
 
-  if (note.title && note.title.length > 50) {
+  if (title && title.length > 50) {
     return sendResponse(400, {
       success: false,
       message: 'Please write a shorter title, max 50 characters',
     });
   }
 
-  if (note.text && note.text.length > 300) {
+  if (text && text.length > 300) {
     return sendResponse(400, {
       success: false,
       message: 'Please write a shorter text, max 300 characters',
@@ -45,15 +45,19 @@ const addNote = async (event, context) => {
 
   //createdAt not changing
   const createdAt = new Date().toISOString();
-  note.createdAt = `${createdAt}`;
 
   //modifiedAt changing each time note is changing
   const modifiedAt = new Date().toISOString();
-  note.modifiedAt = `${modifiedAt}`;
 
-  //generate id
-  const noteId = nanoid();
-  note.id = noteId;
+  const note = {
+    id: nanoid(),
+    userId: userId,
+    userName: userName,
+    title: title,
+    text: text,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
+  };
 
   try {
     await db
@@ -63,7 +67,10 @@ const addNote = async (event, context) => {
       })
       .promise();
 
-    return sendResponse(200, { success: true, note });
+    return sendResponse(200, {
+      success: true,
+      note: note,
+    });
   } catch (error) {
     return sendResponse(400, {
       success: false,

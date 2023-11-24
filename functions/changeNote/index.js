@@ -2,52 +2,50 @@ const AWS = require('aws-sdk');
 const { sendResponse } = require('../../responses/index');
 const middy = require('@middy/core');
 const { validateToken } = require('../middleware/auth');
+const { getUserIdByUsername } = require('../getUserIdByUsername/index');
 const db = new AWS.DynamoDB.DocumentClient();
 
 const changeNote = async (event, context) => {
   if (event?.error && event.error === '401') {
     return sendResponse(401, { success: false, message: 'Invalid token' });
   }
+  const userId = event.id;
+  const userName = event.username;
 
-  const updateNoteInput = JSON.parse(event.body);
+  const { id, title, text, ...rest } = JSON.parse(event.body);
 
-  const allowedFields = ['id', 'title', 'text'];
-
-  if (!allowedFields.some((field) => updateNoteInput[field])) {
+  if (Object.keys(rest).length > 0) {
     return sendResponse(400, {
       success: false,
-      message: 'Please provide only a title and a text, with the correct id',
+      message: 'Invalid properties. Only id, title and text are allowed.',
     });
   }
 
-  if (!updateNoteInput.title && !updateNoteInput.text) {
+  if (!title && !text) {
     return sendResponse(400, {
       success: false,
       message: 'Please provide a note and a title',
     });
   }
 
-  if (updateNoteInput.title && updateNoteInput.title.length > 50) {
+  if (title && title.length > 50) {
     return sendResponse(400, {
       success: false,
       message: 'Please write a shorter title, max 50 characters',
     });
   }
 
-  if (updateNoteInput.text && updateNoteInput.text.length > 300) {
+  if (text && text.length > 300) {
     return sendResponse(400, {
       success: false,
       message: 'Please write a shorter text, max 300 characters',
     });
   }
 
-  const noteIdToChange = updateNoteInput.id;
-
-  // Check if the note with the given ID exists
   const existingNote = await db
     .get({
       TableName: 'notes-db',
-      Key: { id: noteIdToChange },
+      Key: { id: id },
     })
     .promise();
 
@@ -58,20 +56,26 @@ const changeNote = async (event, context) => {
     });
   }
 
-  //modifiedAt changing each time note is changing
+  if (userName !== existingNote.Item.userName) {
+    return sendResponse(403, {
+      success: false,
+      message: 'You are not authorized to update this note',
+    });
+  }
+
   const modifiedAt = new Date().toISOString();
 
   try {
     await db
       .update({
         TableName: 'notes-db',
-        Key: { id: noteIdToChange },
+        Key: { id: id },
         ReturnValues: 'ALL_NEW',
         UpdateExpression:
           'SET #title = :title, #text = :text, #modifiedAt = :modifiedAt',
         ExpressionAttributeValues: {
-          ':title': updateNoteInput.title || existingNote.Item.title,
-          ':text': updateNoteInput.text || existingNote.Item.text,
+          ':title': title || existingNote.Item.title,
+          ':text': text || existingNote.Item.text,
           ':modifiedAt': modifiedAt,
         },
         ExpressionAttributeNames: {
