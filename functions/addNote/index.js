@@ -3,7 +3,6 @@ const { sendResponse } = require('../../responses/index');
 const middy = require('@middy/core'); // Vi importerar middy
 const { nanoid } = require('nanoid');
 const { validateToken } = require('../middleware/auth');
-const { getUserIdByUsername } = require('../getUserIdByUsername/index');
 const db = new AWS.DynamoDB.DocumentClient();
 
 const addNote = async (event, context) => {
@@ -43,10 +42,8 @@ const addNote = async (event, context) => {
     });
   }
 
-  //createdAt not changing
   const createdAt = new Date().toISOString();
 
-  //modifiedAt changing each time note is changing
   const modifiedAt = new Date().toISOString();
 
   const note = {

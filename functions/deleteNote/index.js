@@ -2,7 +2,6 @@ const AWS = require('aws-sdk');
 const { sendResponse } = require('../../responses/index');
 const middy = require('@middy/core'); // Vi importerar middy
 const { validateToken } = require('../middleware/auth');
-const { getUserIdByUsername } = require('../getUserIdByUsername/index');
 const db = new AWS.DynamoDB.DocumentClient();
 
 const deleteNote = async (event, context) => {

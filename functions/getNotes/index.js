@@ -2,7 +2,6 @@ const AWS = require('aws-sdk');
 const jwt = require('jsonwebtoken');
 const { sendResponse } = require('../../responses/index');
 const middy = require('@middy/core'); // Vi importerar middy
-const { getUserIdByUsername } = require('../getUserIdByUsername/index');
 const { validateToken } = require('../middleware/auth');
 const db = new AWS.DynamoDB.DocumentClient();
 

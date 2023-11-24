@@ -1,0 +1,234 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-11-24T12:45:23.819Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_00b9d6793bab4b659b615d9e17220506",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700829857215,
+      "created": 1700739420758,
+      "url": "https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/notes",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\n  \"id\": \"i95Eozxw72X1AAU3Vmc8N\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpDdGNGVVhpU0VpMWNoUTVLNVdJRyIsInVzZXJuYW1lIjoiQmVyaXQiLCJpYXQiOjE3MDA4Mjk3OTEsImV4cCI6MTcwMDgzMzM5MX0.FWpQ1uTr-F5ySWUFaa2kADwiOPxExS_W3PDy96jNTb8"
+      },
+      "metaSortKey": -1700739420758,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "parentId": null,
+      "modified": 1694431426360,
+      "created": 1694431426360,
+      "name": "My Collection",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_ff496cc5eb1d41e88b48e4e07c87786d",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700829848497,
+      "created": 1700739402759,
+      "url": " https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/notes",
+      "name": "changenote",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id\": \"3zezb-kG8-tieSP09dA35\",\n  \"title\": \"Updated Title\",\n  \"text\": \"This is the updated text for the note.\"\n\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpDdGNGVVhpU0VpMWNoUTVLNVdJRyIsInVzZXJuYW1lIjoiQmVyaXQiLCJpYXQiOjE3MDA4Mjk3OTEsImV4cCI6MTcwMDgzMzM5MX0.FWpQ1uTr-F5ySWUFaa2kADwiOPxExS_W3PDy96jNTb8"
+      },
+      "metaSortKey": -1700739402759,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_31cf11bb0adc406c8247d862b8526031",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700829830734,
+      "created": 1700739368724,
+      "url": "https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/notes",
+      "name": "add notes",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"ännu en till\",\n  \"text\": \"This is an example text. It can be up to 300 characters long.\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpDdGNGVVhpU0VpMWNoUTVLNVdJRyIsInVzZXJuYW1lIjoiQmVyaXQiLCJpYXQiOjE3MDA4Mjk3OTEsImV4cCI6MTcwMDgzMzM5MX0.FWpQ1uTr-F5ySWUFaa2kADwiOPxExS_W3PDy96jNTb8"
+      },
+      "metaSortKey": -1700739368724,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3b3ad64619ae40cb9d0abd7073e367db",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700829805021,
+      "created": 1700646681221,
+      "url": "https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/notes",
+      "name": "GetAllNotes",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpDdGNGVVhpU0VpMWNoUTVLNVdJRyIsInVzZXJuYW1lIjoiQmVyaXQiLCJpYXQiOjE3MDA4Mjk3OTEsImV4cCI6MTcwMDgzMzM5MX0.FWpQ1uTr-F5ySWUFaa2kADwiOPxExS_W3PDy96jNTb8"
+      },
+      "metaSortKey": -1700646681221,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9283febbaed5454e99e45a1687ed0ab0",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700827960685,
+      "created": 1700645546103,
+      "url": "https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/user/signin",
+      "name": "Login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\" : \"Berit\",\n\t\"password\": \"123456\" \n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700645546103,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_5f46fdb914724642a1c9c7af4dfec018",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1700819495059,
+      "created": 1700496138951,
+      "url": "https://0z1t4csw7f.execute-api.eu-north-1.amazonaws.com/api/user/signup",
+      "name": "SignUp",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\" : \"Berit\",\n\t\"password\": \"123456\", \n\t\"firstname\": \"Clara\",\n\t\"lastname\": \"Toll\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700496138951,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_8f3ec9fee9b4721c4f06a08dd3c4ef92bf9d21a5",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1694431426373,
+      "created": 1694431426373,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1694431426374,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_8f3ec9fee9b4721c4f06a08dd3c4ef92bf9d21a5",
+      "parentId": "wrk_b59aa000534b4d91acb2d61a931d8f11",
+      "modified": 1697729877432,
+      "created": 1694431426376,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "PHPSESSID",
+          "value": "qodg1ci4bflfctmrd2jr4sopt4",
+          "domain": "www.lakerslakejer.se",
+          "path": "/",
+          "hostOnly": true,
+          "creation": "2023-10-19T15:37:57.431Z",
+          "lastAccessed": "2023-10-19T15:37:57.431Z",
+          "id": "04098507770950177"
+        }
+      ],
+      "_type": "cookie_jar"
+    }
+  ]
+}
